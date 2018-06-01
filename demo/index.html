@@ -6,16 +6,50 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>多行文本 - 省略号（...）</title>
   <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 300px;
+    }
+    h2 {
+      color: #333;
+      border-bottom: 1px solid #ddd;
+    }
     .box {
-      width: 400px;
-      margin-bottom: 20px;
-      line-height: 20px;
-      background-color: #ccc;
+      width: 500px;
+      padding: 15px 20px;
+      margin-bottom: 60px;
+      color: #444;
+      font-size: 14px;
+      line-height: 24px;
+      border: 1px solid #eee;
+      border-radius: 2px;
+      background-color: #f8f8f8;
+    }
+    .text-btn {
+      color: #42b983;
+      margin-left: 10px;
+      text-decoration: none;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: #444;
     }
     </style>
 </head>
 <body>
-  <h1>DMOE 1: 展示效果</h1>
+  <h2>DMOE 1: 展示效果</h2>
+  <div class="subtitle">
+    <span>选择行数：</span>
+    <select id="select-lines">
+      <option value="1">1行</option>
+      <option value="2">2行</option>
+      <option value="3">3行</option>
+      <option value="4">4行</option>
+      <option value="5">5行</option>
+    </select>
+  </div>
   <div class="box" id="box1">
     他望车外看了看，说：“我买几个橘子去。你就在此地，不要走动。”我看那边月台的栅栏外有几个卖东西的等着顾客。
     走到那边月台，须穿过铁道，须跳下去又爬上去。父亲是一个胖子，走过去自然要费事些。我本来要去的，他不肯，
@@ -28,19 +62,28 @@
     只好让他去。我看见他戴着黑布小帽，穿着黑布大马褂12，深青布棉袍，蹒跚13地走到铁道边，慢慢探身下去，尚不大难。
     可是他穿过铁道，要爬上那边月台，就不容易了。他用两手攀着上面，两脚再向上缩；他肥胖的身子向左微倾，显出努力的样子。
   </div>
-  <h1>DMOE 2: 展开全文</h1>
+  <h2>DMOE 2: 展开全文</h2>
   <div class="box" id="box3">
     他望车外看了看，说：“我买几个橘子去。你就在此地，不要走动。”我看那边月台的栅栏外有几个卖东西的等着顾客。
     走到那边月台，须穿过铁道，须跳下去又爬上去。父亲是一个胖子，走过去自然要费事些。我本来要去的，他不肯，
     只好让他去。我看见他戴着黑布小帽，穿着黑布大马褂12，深青布棉袍，蹒跚13地走到铁道边，慢慢探身下去，尚不大难。
     可是他穿过铁道，要爬上那边月台，就不容易了。他用两手攀着上面，两脚再向上缩；他肥胖的身子向左微倾，显出努力的样子。
   </div>
-  <h1>DMOE 3: 增加、删除文字</h1>
   <div class="box" id="box4">
     他望车外看了看，说：“我买几个橘子去。你就在此地，不要走动。”我看那边月台的栅栏外有几个卖东西的等着顾客。
     走到那边月台，须穿过铁道，须跳下去又爬上去。父亲是一个胖子，走过去自然要费事些。我本来要去的，他不肯，
     只好让他去。我看见他戴着黑布小帽，穿着黑布大马褂12，深青布棉袍，蹒跚13地走到铁道边，慢慢探身下去，尚不大难。
     可是他穿过铁道，要爬上那边月台，就不容易了。他用两手攀着上面，两脚再向上缩；他肥胖的身子向左微倾，显出努力的样子。
+  </div>
+  <h2>DMOE 3: 增加、删除文字</h2>
+  <div class="box" id="box5">
+    他望车外看了看，说：“我买几个橘子去。你就在此地，不要走动。”我看那边月台的栅栏外有几个卖东西的等着顾客。
+    走到那边月台，须穿过铁道，须跳下去又爬上去。父亲是一个胖子，走过去自然要费事些。我本来要去的，他不肯，
+    只好让他去。我看见他戴着黑布小帽，穿着黑布大马褂12，深青布棉袍，蹒跚13地走到铁道边，慢慢探身下去，尚不大难。
+    可是他穿过铁道，要爬上那边月台，就不容易了。他用两手攀着上面，两脚再向上缩；他肥胖的身子向左微倾，显出努力的样子。
+  </div>
+  <div>
+    <button id="btn" data-type="add">添加文字</button>
   </div>
 <script type="text/javascript" src="../dist/multi-line-ellipis.js"></script>
 <script>
@@ -48,11 +91,116 @@ const box1 = document.getElementById('box1')
 const box2 = document.getElementById('box2')
 const box3 = document.getElementById('box3')
 const box4 = document.getElementById('box4')
+const box5 = document.getElementById('box5')
 
-mutltlineEllipis({box: box1,inserString: '...', maxLine: 5})
-mutltlineEllipis({box: box2,inserString: '...查看全文', maxLine: 5})
-mutltlineEllipis({box: box3,inserString: '...查看全文', maxLine: 5})
-mutltlineEllipis({box: box4,inserString: '...查看全文', maxLine: 5})
+let str1 = box1.innerHTML
+let str2 = box2.innerHTML
+let str3 = box3.innerHTML
+let str4 = box4.innerHTML
+let str5 = box5.innerHTML
+
+const selectLines = document.querySelector('#select-lines')
+
+const btn = document.getElementById('btn')
+
+mutltlineEllipis({
+  container: box1,
+  str: str1,
+  insertHTML: {
+    tag: 'span',
+    text: '...'
+  }, 
+  maxLine: 5
+})
+
+selectLines.onchange = function (ev) {
+  let maxLine = ev.target.value
+  mutltlineEllipis({
+    container: box1,
+    str: str1,
+    insertHTML: {
+      tag: 'span',
+      text: '...'
+    }, 
+    maxLine
+  })
+}
+
+mutltlineEllipis({
+  container: box2,
+  str: str2,
+  insertHTML: {
+    tag: 'span',
+    text: '...查看详情',
+    className: 'text-btn'
+  }, 
+  maxLine: 5
+})
+mutltlineEllipis({
+  container: box3,
+  str: str3,
+  insertHTML: {
+    tag: 'span',
+    text: '...查看详情',
+    className: 'text-btn'
+  }, 
+  show: true,
+  maxLine: 5
+})
+mutltlineEllipis({
+  container: box4,
+  str: str4,
+  insertHTML: {
+    tag: 'span',
+    text: '...查看详情',
+    className: 'text-btn'
+  }, 
+  show: true,
+  hide: true,
+  maxLine: 5
+})
+mutltlineEllipis({
+  container: box5,
+  str: str5,
+  insertHTML: {
+    tag: 'span',
+    text: '...查看详情',
+    className: 'text-btn'
+  }, 
+  show: true,
+  hide: true,
+  maxLine: 5
+})
+
+
+let addStr = '<a href="#">我是添加的文字</a>'
+
+btn.onclick = function (ev) {
+  const dateType = this.getAttribute('data-type')
+
+  if (dateType === 'add')  {
+    str5 = addStr + str5
+    this.setAttribute('data-type', 'remove')
+    this.innerHTML = '删除文字'
+  } else {
+    str5 = str5.slice(addStr.length)
+    this.setAttribute('data-type', 'add')
+    this.innerHTML = '添加文字'
+  }
+
+  mutltlineEllipis({
+    container: box5,
+    str: str5,
+    insertHTML: {
+      tag: 'span',
+      text: '...查看详情',
+      className: 'text-btn'
+    }, 
+    show: true,
+    hide: true,
+    maxLine: 5
+  })
+}
 </script>
 </body>
 </html>
