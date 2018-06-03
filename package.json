@@ -1,6 +1,6 @@
 {
   "name": "multi-line-ellipsis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a multi-line-ellipsis library",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/temool/multi-line-ellipsis/issues"
   },
-  "homepage": "https://github.com/temool/multi-line-ellipsis#readme",
+  "homepage": "https://temool.github.io/multi-line-ellipsis/demo/",
   "devDependencies": {
     "babel-loader": "^7.1.4",
     "css-loader": "^0.28.11",
